@@ -1,0 +1,22 @@
+@(myForm: Form[User])(implicit message:Messages)
+
+@main("Welcome to Play") {
+<center>
+    <h1>Please Register Here</h1>
+    <hr>
+    @helper.form(action = routes.HomeController.submitRegistration) {
+    <h3>
+        @helper.inputText(myForm("id"),'_label -> "ID")
+
+        @helper.inputText(myForm("name"),'_label -> "Name")
+
+        @helper.inputText(myForm("email"),'type->"email",'_label -> "Email")
+
+        @helper.inputPassword(myForm("password"),'_label -> "Password")
+        <input type="submit" value="Register">
+    </h3>
+    }
+    <hr>
+    <h1>Please click <a href="/login">HERE</a>  to Login</h1>
+</center>
+}

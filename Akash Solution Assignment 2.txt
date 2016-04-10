@@ -1,0 +1,47 @@
+Assignments:
+------------
+1. Insert document in students collection with name "Knoldus Noida" and scores are 
+		
+                  [{"type" : "exam",
+			"score" : 1.4
+		 },{
+			"type" : "quiz",
+			"score" : 11.7
+		},{
+			"type" : "homework",
+			"score" : 6.67
+		},{
+			"type" : "assignment",
+			"score" : 35.87
+		}]
+
+db.student.insert({"name": "Knoldus Noida","scores":[{"type" : "exam","score" : 1.4},{
+"type" : "quiz","score" : 11.7},
+{"type" : "homework","score" : 6.67},
+{"type" : "assignment","score" : 35.87}]})
+
+2. Find document/documents of person having name "Giselan Levin"
+
+> db.student.find({"name":"Gisela Levin"}).pretty();
+
+3. Find document/documents of person having name "Giselan Levin" and display (project) only scores list.
+
+> db.student.find({"name":"Gisela Levin"},{"scores":1,"_id":0}).pretty();
+
+4. Change name of person "Knoldus Noida" to "Noida Knoldus" 
+
+> db.student.update({"name":"Knoldus Noida"},{$set:{"name":"Noida Knoldus"}})
+
+
+5. Add new score {type: "assignment", score: 60} to all documents belonging to person having name "Giselan Levin".
+   hint: This is bulk or multi document update.
+
+db.student.update({"name": "Gisela Levin"},{$push :{"scores":{type: "assignment", score: 60} }},{multi:true})
+
+6. Find document with score of type assignment.
+
+> db.student.find({"scores.type":"assignment"}).pretty();
+
+7. Remove document of person haven name "Noida Knoldus"
+
+> db.student.remove({"name":"Noida Knoldus"});
